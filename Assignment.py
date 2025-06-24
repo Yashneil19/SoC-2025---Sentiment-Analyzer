@@ -60,7 +60,7 @@ def standardize_text(text: str) -> list:
 
     return lemmatized
 i=0
-while(i < 50000):
+while(i < len(imdb)):
     imdb.iloc[i,0]=standardize_text(imdb.iloc[i,0])
     i+=1
 imdb.to_csv('./IMDB Dataset/IMDB Dataset New.csv')
