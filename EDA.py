@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
+import seaborn as sn
 from wordcloud import WordCloud
 from collections import Counter
 import nltk
@@ -16,7 +16,7 @@ df = pd.read_csv('./IMDB Dataset/IMDB Dataset New.csv')
 df['word_count'] = df['review'].apply(lambda x: len(x.split()))
 
 # Plots
-sns.histplot(df['word_count'], bins=30, kde=True)
+sn.histplot(df['word_count'], bins=30, kde=True)
 plt.title('Word Count Distribution')
 plt.show()
 
@@ -45,7 +45,7 @@ for text in df['review']:
     pos_counts.update(tag for word, tag in tags)
 
 pos_df = pd.DataFrame(pos_counts.items(), columns=['POS', 'Frequency'])
-sns.barplot(data=pos_df.sort_values('Frequency', ascending=False).head(10), x='POS', y='Frequency')
+sn.barplot(data=pos_df.sort_values('Frequency', ascending=False).head(10), x='POS', y='Frequency')
 plt.title('Top POS Tags')
 plt.show()
 
@@ -59,7 +59,7 @@ for doc in df['review']:
     all_ents.update([label for text, label in extract_ner(doc)])
 
 ner_df = pd.DataFrame(all_ents.items(), columns=['Entity', 'Count'])
-sns.barplot(data=ner_df.sort_values('Count', ascending=False), x='Entity', y='Count')
+sn.barplot(data=ner_df.sort_values('Count', ascending=False), x='Entity', y='Count')
 plt.title('NER Entity Types')
 plt.show()
 
