@@ -60,7 +60,6 @@ def standardize_text(text: str) -> list:
 
     return lemmatized
 
-for text in review['Text']:
-    text=standardize_text(text)
+review['Processed Text'] = review['Text'].apply(standardize_text)
 
 review.to_csv('./SoC-2025---Sentiment-Analyzer/Project/Reviews New.csv')
