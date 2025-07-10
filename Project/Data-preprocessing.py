@@ -15,7 +15,7 @@ nltk.download('averaged_perceptron_tagger_eng')
 
 # Importing Dataset
 
-review = pd.read_csv('./SoC-2025---Sentiment-Analyzer/Project/Reviews.csv')
+review = pd.read_csv('./Project/Reviews.csv')
 
 # Part of speech tagging
 def get_wordnet_pos(tag):
@@ -62,4 +62,4 @@ def standardize_text(text: str) -> list:
 
 review['Processed Text'] = review['Text'].apply(standardize_text)
 
-review.to_csv('./SoC-2025---Sentiment-Analyzer/Project/Reviews New.csv')
+review.to_csv('.Project/Reviews New.csv')
