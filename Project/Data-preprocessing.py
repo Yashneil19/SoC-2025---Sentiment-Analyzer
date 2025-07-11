@@ -64,4 +64,4 @@ def standardize_text(text: str) -> list:
 tqdm.pandas()
 review['Processed Text'] = review['Text'].progress_apply(standardize_text)
 
-review.to_csv('.Project/Reviews Pre-processed.csv')
+review.to_csv('./Project/Reviews Pre-processed.csv')
