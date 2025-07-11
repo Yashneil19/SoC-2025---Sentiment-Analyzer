@@ -2,9 +2,8 @@
 
 import pandas as pd
 import math
-from transformers import BertTokenizer, BertModel
 
-review = pd.read_csv('./Project/Reviews New.csv')
+review = pd.read_csv('./Project/Reviews Pre-processed.csv')
 
 # Building the vocabulary from all sentences
 vocabulary = set()
@@ -62,21 +61,4 @@ idf_vector = compute_idf(review['Processed Text'], vocabulary)
 review['TF_Vector'] = review['Processed Text'].apply(lambda x: compute_tf(x, vocabulary))
 review['TFIDF_Vector'] = review['TF_Vector'].apply(lambda tf: compute_tfidf(tf, idf_vector))
 
-
-
-# Word Embeddings (BERT)
-
-# Load pre-trained BERT
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-bert_model = BertModel.from_pretrained('bert-base-uncased')
-
-# Convert list of tokens to string 
-review['Processed_Text_Str'] = review['Processed Text'].apply(lambda tokens: ' '.join(tokens))
-
-def get_bert_embedding(text):
-    inputs = tokenizer(text, return_tensors='pt', truncation=True, padding=True)
-    outputs = bert_model(**inputs)
-    cls_embedding = outputs.last_hidden_state[:, 0, :]  # CLS token
-    return cls_embedding.squeeze().numpy()
-
-review.to_csv('./Project/Reviews New2.csv')
+review.to_csv('./Project/Reviews TF-IDF.csv')

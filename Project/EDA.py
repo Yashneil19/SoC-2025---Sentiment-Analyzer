@@ -10,7 +10,7 @@ import spacy
 
 nlp = spacy.load("en_core_web_sm")
 
-review = pd.read_csv('./Project/Reviews New.csv')
+review = pd.read_csv('./Project/Reviews Pre-processed.csv')
 
 # Handling Missing values
 print("Number of missing values:",review['Text'].isnull().sum())

@@ -5,6 +5,7 @@ import nltk
 from nltk.corpus import stopwords, wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag, word_tokenize
+from tqdm import tqdm
 
 # Download necessary resources
 nltk.download('stopwords')
@@ -60,6 +61,7 @@ def standardize_text(text: str) -> list:
 
     return lemmatized
 
-review['Processed Text'] = review['Text'].apply(standardize_text)
+tqdm.pandas()
+review['Processed Text'] = review['Text'].progress_apply(standardize_text)
 
-review.to_csv('.Project/Reviews New.csv')
+review.to_csv('.Project/Reviews Pre-processed.csv')
