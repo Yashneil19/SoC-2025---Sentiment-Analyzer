@@ -3,6 +3,7 @@
 import pandas as pd
 import math
 from tqdm import tqdm
+import joblib 
 
 review = pd.read_csv('./Project/Reviews_BERT.csv')
 
@@ -63,5 +64,12 @@ tqdm.pandas()
 # Compute TF and then TF-IDF for each row
 review['TF_Vector'] = review['Processed Text'].apply(lambda x: compute_tf(x, vocabulary))
 review['TFIDF_Vector'] = review['TF_Vector'].apply(lambda tf: compute_tfidf(tf, idf_vector))
+
+import joblib
+
+# After computing
+joblib.dump(vocabulary, 'vocabulary.pkl')
+joblib.dump(idf_vector, 'idf_vector.pkl')
+
 
 review.to_csv('./Project/Reviews_BERT_TF-IDF.csv')

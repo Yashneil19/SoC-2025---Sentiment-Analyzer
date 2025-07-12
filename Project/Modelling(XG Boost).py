@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 from sklearn.utils import resample
 import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfVectorizer
 import seaborn as sns
 from xgboost import XGBClassifier
 import joblib

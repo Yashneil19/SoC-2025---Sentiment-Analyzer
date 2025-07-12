@@ -1,6 +1,5 @@
 from sentence_transformers import SentenceTransformer
 import pandas as pd
-from tqdm import tqdm
 from sklearn.utils import resample
 import ast
 
