@@ -2,8 +2,9 @@
 
 import pandas as pd
 import math
+from tqdm import tqdm
 
-review = pd.read_csv('./Project/Reviews Pre-processed.csv')
+review = pd.read_csv('./Project/Reviews_BERT.csv')
 
 # Building the vocabulary from all sentences
 vocabulary = set()
@@ -57,8 +58,10 @@ def compute_tfidf(tf_vector, idf_vector):
 # Computing IDF
 idf_vector = compute_idf(review['Processed Text'], vocabulary)
 
+tqdm.pandas()
+
 # Compute TF and then TF-IDF for each row
 review['TF_Vector'] = review['Processed Text'].apply(lambda x: compute_tf(x, vocabulary))
 review['TFIDF_Vector'] = review['TF_Vector'].apply(lambda tf: compute_tfidf(tf, idf_vector))
 
-review.to_csv('./Project/Reviews TF-IDF.csv')
+review.to_csv('./Project/Reviews_BERT_TF-IDF.csv')

@@ -62,6 +62,7 @@ def standardize_text(text: str) -> list:
     return lemmatized
 
 tqdm.pandas()
+
 review['Processed Text'] = review['Text'].progress_apply(standardize_text)
 
 review.to_csv('./Project/Reviews Pre-processed.csv')
